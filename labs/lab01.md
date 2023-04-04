@@ -1,4 +1,6 @@
-# Lab01: Plan, Build & Test
+# Lab01: Start using your repo
+
+On this lab you will start using your repo. You will create a new repo on your GitHub account and configure it to use Pull Requests. You will also create an Issue and a Pull Request to fix it.
 
 ## Learning Objectives
 
@@ -7,7 +9,7 @@
 - Create an Issue
 - Create a Pull Request
 - Complete a Pull Request
-- Clean up your local repo to be ready for new developments 
+- Clean up your local repo to be ready for new developments
 
 ## Instructions
 
