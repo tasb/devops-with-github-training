@@ -69,6 +69,8 @@ Get access to the content used during sessions.
 1. [What is DevOps](slides/session01.pdf)
 2. [Continuous Planning](slides/Session02.pdf)
 3. [Source Control as Source of Truth](slides/Session03.pdf)
+4. [Continuous Integration](slides/Session04.pdf)
+5. [Secure DevOps](slides/Session05.pdf)
 
 ## Labs
 
