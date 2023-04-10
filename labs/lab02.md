@@ -7,7 +7,8 @@ On this lab you'll create your first automation for build & test your code
 
 - Create a workflow to build and test your code
 - Use Pull Request to validate your code
-- 
+- Run Continuous Integration workflow
+- Manage your local repo
 
 ## Instructions
 
