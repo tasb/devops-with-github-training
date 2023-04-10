@@ -1,0 +1,41 @@
+name: EchoAPI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'echo-api/**'
+      - '.github/workflows/echo-api.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'echo-api/**'
+      - '.github/workflows/echo-api.yml'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: |
+        dotnet restore echo-api/echo-api.csproj
+    
+    - name: Build
+      run: |
+        dotnet build --no-restore echo-api/echo-api.csproj -c Release
+    
+    - name: Publish
+      run: |
+        dotnet publish --no-build echo-api/echo-api.csproj -c Release -o echo-api/publish
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: echo-api
+        path: echo-api/publish

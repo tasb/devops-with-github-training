@@ -1,0 +1,39 @@
+name: EchoWebapp
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'echo-webapp/**'
+      - '.github/workflows/echo-webapp.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'echo-webapp/**'
+      - '.github/workflows/echo-webapp.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    
+    - uses: ./.github/workflows/composite/build-dotnet #tasb/my-public-actions/build-dotnet@main
+      with:
+        dotnetProject: 'echo-webapp/echo-webapp.csproj'
+        buildConfiguration: Release
+    
+    - name: Publish
+      if: github.event_name != 'pull_request'
+      run: |
+        dotnet publish --no-build echo-webapp/echo-webapp.csproj -c Release -o echo-webapp/publish
+
+    - uses: actions/upload-artifact@v3
+      if: github.event_name != 'pull_request'
+      with:
+        name: echo-webapp
+        path: echo-webapp/publish

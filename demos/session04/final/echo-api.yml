@@ -1,0 +1,39 @@
+name: EchoAPI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'echo-api/**'
+      - '.github/workflows/echo-api.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'echo-api/**'
+      - '.github/workflows/echo-api.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - uses: ./.github/workflows/composite/build-dotnet #tasb/my-public-actions/build-dotnet@main
+      with:
+        dotnetProject: 'echo-api/echo-api.csproj'
+        buildConfiguration: Release
+
+    - name: Publish
+      if: github.event_name != 'pull_request'
+      run: |
+        dotnet publish --no-build echo-api/echo-api.csproj -c Release -o echo-api/publish
+
+    - uses: actions/upload-artifact@v3
+      if: github.event_name != 'pull_request'
+      with:
+        name: echo-api
+        path: echo-api/publish

@@ -75,6 +75,7 @@ Get access to the content used during sessions.
 Get access to the labs used during sessions.
 
 1. [Start using your repo](labs/lab01.md)
+2. [Build & Test](labs/lab02.md)
 
 ## Feedback
 
