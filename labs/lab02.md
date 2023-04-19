@@ -230,7 +230,7 @@ git checkout main
 
 git pull
 
-gir branch -d build-test
+git branch -d build-test
 ```
 
 Then, let's create a new branch to make the new developments.
