@@ -328,7 +328,7 @@ git pull
 Last step is to keep your repo clean and ready to develop another improvement your code base. For that you need to delete the branch created to update main page title.
 
 ```bash
-git branch -d topic/update-title
+git branch -d topic/add-hostname-endpoint
 ```
 
 And it's done! You may repeat this process as needed to bring more value to your end user!
