@@ -71,6 +71,8 @@ Get access to the content used during sessions.
 3. [Source Control as Source of Truth](slides/Session03.pdf)
 4. [Continuous Integration](slides/Session04.pdf)
 5. [Secure DevOps](slides/Session05.pdf)
+6. [Secure DevOps Tooling](slides/Session06.pdf)
+7. [Continuous Deployment](slides/Session07.pdf)
 
 ## Labs
 
@@ -78,6 +80,7 @@ Get access to the labs used during sessions.
 
 1. [Start using your repo](labs/lab01.md)
 2. [Build & Test](labs/lab02.md)
+3. [Secure DevOps](labs/lab03.md)
 
 ## Feedback
 
