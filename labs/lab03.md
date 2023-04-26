@@ -130,7 +130,7 @@ So your `Initialize CodeQL` step will look like this:
 - name: Initialize CodeQL
   uses: github/codeql-action/init@v2
   with:
-    languages: ${{ matrix.language }}
+    languages: $\{\{ matrix.language \}\}
     queries: security-extended,security-and-quality
 ```
 
