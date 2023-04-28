@@ -1,0 +1,98 @@
+name: TodoAPI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/TodoAPI/**'
+      - 'src/TodoAPI.Tests/**'
+      - '.github/workflows/todo-api.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/TodoAPI/**'
+      - 'src/TodoAPI.Tests/**'
+      - '.github/workflows/todo-api.yml'
+
+env:
+  AZURE_WEBAPP_NAME: "<PREFIX>-todoapp-prd-api"
+  ARTIFACT_NAME: "todo-api"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: |
+        dotnet restore src/TodoAPI/TodoAPI.csproj
+        dotnet restore src/TodoAPI.Tests/TodoAPI.Tests.csproj
+    
+    - name: Build
+      run: |
+        dotnet build --no-restore src/TodoAPI/TodoAPI.csproj
+        dotnet build --no-restore src/TodoAPI.Tests/TodoAPI.Tests.csproj
+    
+    - name: Test
+      run: dotnet test --no-build src/TodoAPI.Tests/TodoAPI.Tests.csproj --verbosity normal --logger "trx;LogFileName=test-results.trx"
+      
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Todo API Tests
+        path: '**/TestResults/*.trx'
+        reporter: dotnet-trx
+    
+    - name: Publish
+      if: github.event_name != 'pull_request'
+      run: |
+        dotnet publish --no-build src/TodoAPI/TodoAPI.csproj -o src/TodoAPI/publish
+
+    - uses: actions/upload-artifact@v3
+      if: github.event_name != 'pull_request'
+      with:
+        name: todo-api
+        path: src/TodoAPI/publish
+        
+  prod:
+    if: github.event_name != 'pull_request'
+    
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - uses: actions/download-artifact@v3
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+        path: ./${{ env.ARTIFACT_NAME }}
+    
+    - uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  
+
+    - name: 'Azure webapp deploy - PROD'
+      id: prod-deploy
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+        package: ./${{ env.ARTIFACT_NAME }}
+        slot-name: 'production'
+
+    - name: logout
+      run: |
+        az logout
+      

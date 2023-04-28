@@ -39,7 +39,7 @@ You need to create two workflows, one for TodoAPI and another for TodoWebApp.
 
 ### TodoAPI
 
-Create a file named `todo` on `.github/workflows` folder and add the following content.
+Create a file named `todo-api.yaml` on `.github/workflows` folder and add the following content.
 
 ```yaml
 name: TodoAPI
