@@ -56,7 +56,7 @@ Now create a JSON file named `policy.json` and add the following content on it:
 {
   "name": "MyFederatedCredential",
   "issuer": "https://token.actions.githubusercontent.com",
-  "subject": "repo:<GH-USERNAME>/<GH-REPO>",
+  "subject": "repo:<GH-USERNAME>/<GH-REPO>:ref:refs/heads/main",
   "audiences": [
     "api://AzureADTokenExchange"
   ]
