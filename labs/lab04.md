@@ -105,7 +105,7 @@ Go to your repo and navigate to `Settings > Secrets and variables > Actions`, th
   - Secret: <APP_ID>
 - Secret #2
   - Name: AZURE_TENANT_ID
-  - Secret:
+  - Secret: d5fe066f-22b6-4c2b-acc3-04f8b6dddf6c
 - Secret #3
   - Name: AZURE_SUBSCRIPTION_ID
   - Secret: 49175c01-02a7-44bb-b379-2c06f4aae5b4
