@@ -527,7 +527,7 @@ On this case, you need to set the URL of your API. So, navigate to App Service t
 Click on `+ New application setting` button and add a new setting with the following values:
 
 - Name: `Services__TodoAPI`
-- Value: `http://<API_URL>/todos` where `<API_URL>` is the value you copied previously.
+- Value: `https://<API_URL>/todos/` where `<API_URL>` is the value you copied previously.
 
 Click on `Restart` button on top of the page to restart your App Service.
 
