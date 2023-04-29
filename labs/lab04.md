@@ -255,6 +255,7 @@ env:
 permissions:
   id-token: write
   contents: read
+  checks: write
 
 jobs:
   build:
