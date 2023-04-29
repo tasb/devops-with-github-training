@@ -443,7 +443,7 @@ jobs:
     - uses: actions/upload-artifact@v3
       if: github.event_name != 'pull_request'
       with:
-        name: todo-webapp
+        name: ${{ env.ARTIFACT_NAME }}
         path: src/TodoWebapp/publish
 
   prod:
