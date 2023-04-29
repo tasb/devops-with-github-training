@@ -409,7 +409,7 @@ on:
       - '.github/workflows/todo-webapp.yml'
 
 env:
-  AZURE_WEBAPP_NAME: "<PREFIX>-todoapp-prd-app"
+  AZURE_WEBAPP_NAME: "<PREFIX>-todoapp-prd-web"
   ARTIFACT_NAME: "todo-app"
 
 permissions:
