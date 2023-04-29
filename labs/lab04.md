@@ -240,13 +240,13 @@ on:
     paths:
       - 'src/TodoAPI/**'
       - 'src/TodoAPI.Tests/**'
-      - '.github/workflows/todo-api.yml'
+      - '.github/workflows/todo-api.yaml'
   pull_request:
     branches: [ main ]
     paths:
       - 'src/TodoAPI/**'
       - 'src/TodoAPI.Tests/**'
-      - '.github/workflows/todo-api.yml'
+      - '.github/workflows/todo-api.yaml'
 
 env:
   AZURE_WEBAPP_NAME: "<PREFIX>-todoapp-prd-api"
@@ -401,12 +401,12 @@ on:
     branches: [ main ]
     paths:
       - 'src/TodoWebapp/**'
-      - '.github/workflows/todo-webapp.yml'
+      - '.github/workflows/todo-webapp.yaml'
   pull_request:
     branches: [ main ]
     paths:
       - 'src/TodoWebapp/**'
-      - '.github/workflows/todo-webapp.yml'
+      - '.github/workflows/todo-webapp.yaml'
 
 env:
   AZURE_WEBAPP_NAME: "<PREFIX>-todoapp-prd-web"
