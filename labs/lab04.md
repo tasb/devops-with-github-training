@@ -70,6 +70,8 @@ On the file you should replace the following tokens:
 
 This file will be used to create a Federated Credential between your Azure AD (through your App Registration) and your GitHub repository and allow only the workflows on your repository to use the credentials created on this App Registration.
 
+Don't delete this file because you'll need to use it again on next lab.
+
 Now, execute the following command to create a credential on your App Registration:
 
 ```bash
