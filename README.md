@@ -24,8 +24,9 @@ To perform the labs on this repo you need to have the following software install
 2. [Git](https://git-scm.com/download/win)
 3. GitHub account on Free tier. [Here to create a new account](https://github.com/join)
 4. [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-5. Install [Visual Studio Code](https://code.visualstudio.com/) (or other code editor of your preference)
-6. (Optional) Some VS Code extension helpful for this Docker and Kubernetes integration
+5. [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
+6. Install [Visual Studio Code](https://code.visualstudio.com/) (or other code editor of your preference)
+7. (Optional) Some VS Code extension helpful for this Docker and Kubernetes integration
 
     - [GitHub Pull Request & Issues](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
     - [Azure Resources](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureresourcegroups)
@@ -39,8 +40,9 @@ To perform the labs on this repo you need to have the following software install
 2. [Git](https://www.atlassian.com/git/tutorials/install-git#linux)
 3. GitHub account on Free tier. [Here to create a new account](https://github.com/join)
 4. [.NET 6](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#install-the-sdk)
-5. Install [Visual Studio Code](https://code.visualstudio.com/) (or other code editor of your preference)
-6. (Optional) Some VS Code extension helpful for this Docker and Kubernetes integration
+5. [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
+6. Install [Visual Studio Code](https://code.visualstudio.com/) (or other code editor of your preference)
+7. (Optional) Some VS Code extension helpful for this Docker and Kubernetes integration
 
     - [GitHub Pull Request & Issues](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
     - [Azure Resources](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureresourcegroups)
@@ -54,7 +56,8 @@ To perform the labs on this repo you need to have the following software install
 2. GitHub account on Free tier. [Here to create a new account](https://github.com/join)
 3. [.NET 6](https://docs.microsoft.com/en-us/dotnet/core/install/macos)
 4. Install [Visual Studio Code](https://code.visualstudio.com/) (or other code editor of your preference)
-5. (Optional) Some VS Code extension helpful for this Docker and Kubernetes integration
+5. [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-macos)
+6. (Optional) Some VS Code extension helpful for this Docker and Kubernetes integration
 
     - [GitHub Pull Request & Issues](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
     - [Azure Resources](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureresourcegroups)
@@ -73,6 +76,8 @@ Get access to the content used during sessions.
 5. [Secure DevOps](slides/Session05.pdf)
 6. [Secure DevOps Tooling](slides/Session06.pdf)
 7. [Continuous Deployment](slides/Session07.pdf)
+8. [Infrastructure as Code](slides/Session08.pdf)
+9. [Continuous Testing](slides/Session09.pdf)
 
 ## Labs
 
@@ -82,6 +87,8 @@ Get access to the labs used during sessions.
 2. [Build & Test](labs/lab02.md)
 3. [Secure DevOps](labs/lab03.md)
 4. [Continuous Deployment](labs/lab04.md)
+5. [Infra as Code](labs/lab05.md)
+6. [Continuous Testing](labs/lab06.md)
 
 ## Feedback
 

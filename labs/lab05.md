@@ -12,11 +12,64 @@ In this lab, you will learn how to:
 
 ## Instructions
 
+- [Update your App Registration](#update-your-app-registration)
 - [Create Azure Storage](#create-azure-storage)
 - [Create Terraform scripts](#create-terraform-scripts)
 - [Prepare GitHub repo](#prepare-github-repo)
 - [Update GitHub workflows](#update-github-workflows)
 - [Run your pipelines](#run-your-pipelines)
+
+## Update your App Registration
+
+On this lab you'll deploy the infrastructure using Terraform. To do that, we need to update our App Registration to allow Terraform to access Azure resources.
+
+At same time, you'll use the concept of GitHub Environments so you'll use it to make a federated credentials.
+
+First, let's get again your App Registration ID. Execute the following command (replacing the `<PREFIX>` with your unique prefix):
+
+```bash
+az ad app list --display-name <PREFIX>-github-workflow --query "[0].id"
+```
+
+Now update your `policy.json` file with the following content:
+
+```json
+{
+  "name": "gh-repo-env-stg",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "subject": "repo:theonorg/todo-app-labs:environment:stg",
+  "audiences": [
+    "api://AzureADTokenExchange"
+  ]
+}
+```
+
+And run the following command to update your App Registration, replacing the `<APP_ID>` with the value you get on previous command:
+
+```bash
+az ad app federated-credential create --id <APP_ID> --parameters @policy.json
+```
+
+Since you'll use two environments, let add the federated credential to `prod` environment too.
+
+Update your `policy.json` file with the following content:
+
+```json
+{
+  "name": "gh-repo-env-prod",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "subject": "repo:theonorg/todo-app-labs:environment:prod",
+  "audiences": [
+    "api://AzureADTokenExchange"
+  ]
+}
+```
+
+And run the following command to update your App Registration, replacing the `<APP_ID>` with the value you get on previous command:
+
+```bash
+az ad app federated-credential create --id <APP_ID> --parameters @policy.json
+```
 
 ## Create Azure Storage
 
