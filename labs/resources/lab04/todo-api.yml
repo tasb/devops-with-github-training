@@ -21,6 +21,7 @@ env:
 permissions:
   id-token: write
   contents: read
+  checks: write
 
 jobs:
   build:
@@ -95,4 +96,3 @@ jobs:
     - name: logout
       run: |
         az logout
-      

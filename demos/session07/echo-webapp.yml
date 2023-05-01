@@ -1,25 +1,25 @@
-name: TodoWebapp
+name: EchoWebapp
 
 on:
   push:
     branches: [ main ]
     paths:
-      - 'src/TodoWebapp/**'
-      - '.github/workflows/todo-webapp.yml'
+      - 'echo-webapp/**'
+      - '.github/workflows/echo-webapp.yml'
   pull_request:
     branches: [ main ]
     paths:
-      - 'src/TodoWebapp/**'
-      - '.github/workflows/todo-webapp.yml'
+      - 'echo-webapp/**'
+      - '.github/workflows/echo-webapp.yml'
 
 env:
-  AZURE_WEBAPP_NAME: "<PREFIX>-todoapp-prd-web"
-  ARTIFACT_NAME: "todo-app"
+  AZURE_WEBAPP_NAME: "tbernardo-echo-app"
+  ARTIFACT_NAME: "echo-webapp"
 
 permissions:
   id-token: write
   contents: read
-
+  
 jobs:
   build:
 
@@ -27,28 +27,33 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: |
-        dotnet restore src/TodoWebapp/TodoWebapp.csproj
+    # - name: Setup .NET
+    #   uses: actions/setup-dotnet@v2
+    #   with:
+    #     dotnet-version: 6.0.x
+    # - name: Restore dependencies
+    #   run: |
+    #     dotnet restore echo-webapp/echo-webapp.csproj
     
-    - name: Build
-      run: |
-        dotnet build --no-restore src/TodoWebapp/TodoWebapp.csproj
+    # - name: Build
+    #   run: |
+    #     dotnet build --no-restore echo-webapp/echo-webapp.csproj -c Release
+
+    - uses: ./.github/workflows/composite/build-dotnet #tasb/my-public-actions/build-dotnet@main
+      with:
+        dotnetProject: 'echo-webapp/echo-webapp.csproj'
+        buildConfiguration: Release
     
     - name: Publish
       if: github.event_name != 'pull_request'
       run: |
-        dotnet publish --no-build src/TodoWebapp/TodoWebapp.csproj -o src/TodoWebapp/publish
+        dotnet publish --no-build echo-webapp/echo-webapp.csproj -c Release -o echo-webapp/publish
 
     - uses: actions/upload-artifact@v3
       if: github.event_name != 'pull_request'
       with:
         name: ${{ env.ARTIFACT_NAME }}
-        path: src/TodoWebapp/publish
+        path: echo-webapp/publish
 
   prod:
     if: github.event_name != 'pull_request'

@@ -1,24 +1,25 @@
-name: TodoWebapp
+name: EchoAPI
 
 on:
   push:
     branches: [ main ]
     paths:
-      - 'src/TodoWebapp/**'
-      - '.github/workflows/todo-webapp.yml'
+      - 'echo-api/**'
+      - '.github/workflows/echo-api.yml'
   pull_request:
     branches: [ main ]
     paths:
-      - 'src/TodoWebapp/**'
-      - '.github/workflows/todo-webapp.yml'
+      - 'echo-api/**'
+      - '.github/workflows/echo-api.yml'
 
 env:
-  AZURE_WEBAPP_NAME: "<PREFIX>-todoapp-prd-web"
-  ARTIFACT_NAME: "todo-app"
+  AZURE_WEBAPP_NAME: "tbernardo-echo-api"
+  ARTIFACT_NAME: "echo-api"
 
 permissions:
   id-token: write
   contents: read
+    
 
 jobs:
   build:
@@ -27,28 +28,33 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: |
-        dotnet restore src/TodoWebapp/TodoWebapp.csproj
+    # - name: Setup .NET
+    #   uses: actions/setup-dotnet@v2
+    #   with:
+    #     dotnet-version: 6.0.x
+    # - name: Restore dependencies
+    #   run: |
+    #     dotnet restore echo-api/echo-api.csproj
     
-    - name: Build
-      run: |
-        dotnet build --no-restore src/TodoWebapp/TodoWebapp.csproj
+    # - name: Build
+    #   run: |
+    #     dotnet build --no-restore echo-api/echo-api.csproj -c Release
+
+    - uses: ./.github/workflows/composite/build-dotnet #tasb/my-public-actions/build-dotnet@main
+      with:
+        dotnetProject: 'echo-api/echo-api.csproj'
+        buildConfiguration: Release
     
     - name: Publish
       if: github.event_name != 'pull_request'
       run: |
-        dotnet publish --no-build src/TodoWebapp/TodoWebapp.csproj -o src/TodoWebapp/publish
+        dotnet publish --no-build echo-api/echo-api.csproj -c Release -o echo-api/publish
 
     - uses: actions/upload-artifact@v3
       if: github.event_name != 'pull_request'
       with:
         name: ${{ env.ARTIFACT_NAME }}
-        path: src/TodoWebapp/publish
+        path: echo-api/publish
 
   prod:
     if: github.event_name != 'pull_request'
@@ -80,3 +86,4 @@ jobs:
     - name: logout
       run: |
         az logout
+      

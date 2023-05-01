@@ -81,6 +81,7 @@ Get access to the labs used during sessions.
 1. [Start using your repo](labs/lab01.md)
 2. [Build & Test](labs/lab02.md)
 3. [Secure DevOps](labs/lab03.md)
+4. [Continuous Deployment](labs/lab04.md)
 
 ## Feedback
 
