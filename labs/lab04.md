@@ -72,11 +72,20 @@ This file will be used to create a Federated Credential between your Azure AD (t
 
 Don't delete this file because you'll need to use it again on next lab.
 
-Now, execute the following command to create a credential on your App Registration:
+Now, execute the following command to create a credential on your App Registration (look at the diferences if you're using Powershell or bash/zsh).
+
+Bash/Zsh version:
 
 ```bash
 az ad app federated-credential create --id <OBJECT_ID> --parameters @policy.json
 ```
+
+PowerShell version:
+
+```bash
+az ad app federated-credential create --id <OBJECT_ID> --parameters "policy.json"
+```
+
 
 Finally, you need to create a Service Principal, the service account that will effectively do the login in Azure on behalf of your GitHub workflow.
 
