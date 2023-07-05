@@ -1,3 +1,3 @@
-rgName = "tf-storage"
-storageName = "echoapptfbackend"
+rgName = "tasb-tf-storage"
+storageName = "tasbechoapptfbackend"
 container="tfstate"
