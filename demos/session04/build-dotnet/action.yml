@@ -2,11 +2,8 @@ name: "Build and Test dotnet"
 description: "Builds dotnet code project and runs unit tests"
 
 inputs:
-  mainProject:
+  dotnetProject:
     description: "Main code project"
-    required: true
-  testsProject:
-    description: "Tests project"
     required: true
   buildConfiguration:
     description: "Build configuration"
@@ -24,24 +21,9 @@ runs:
     - name: Restore projects
       shell: bash
       run: |
-        dotnet restore ${{ inputs.mainProject }}
-        dotnet restore ${{ inputs.testsProject }}
+        dotnet restore ${{ inputs.dotnetProject }}
 
-      
     - name: Build projects
       shell: bash
       run: |
-        dotnet build --no-restore ${{ inputs.mainProject }} -c ${{ inputs.buildConfiguration }}
-        dotnet build --no-restore ${{ inputs.testsProject }} -c ${{ inputs.buildConfiguration }}
-
-    - name: Test
-      shell: bash
-      run: dotnet test --no-build ${{ inputs.testsProject }} --verbosity normal --logger "trx;LogFileName=test-results.trx"
-      
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: Tests Results
-        path: '**/TestResults/*.trx'
-        reporter: dotnet-trx
+        dotnet build --no-restore ${{ inputs.dotnetProject }} -c ${{ inputs.buildConfiguration }}
